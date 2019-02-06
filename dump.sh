@@ -4,8 +4,7 @@ set -e
 
 echo "Job started: $(date)"
 
-DATE=$(date +%Y%m%d_%H%M%S)
-FILE="/dump/$PREFIX-$DATE.sql"
+FILE="/dump/$DUMP_FILE.sql"
 
 pg_dump -h "$PGHOST" -p "$PGPORT" -U "$PGUSER" -f "$FILE" -d "$PGDB" 
 gzip "$FILE"
