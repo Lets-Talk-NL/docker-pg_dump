@@ -7,6 +7,9 @@ echo "Job started: $(date)"
 FILE="/dump/$DUMP_FILE.sql"
 
 pg_dump -h "$PGHOST" -p "$PGPORT" -U "$PGUSER" -f "$FILE" -d "$PGDB" 
+if [ -f "$FILE.gz" ]; then
+	rm "$FILE.gz"
+fi
 gzip "$FILE"
 
 if [ ! -z "$DELETE_OLDER_THAN" ]; then
